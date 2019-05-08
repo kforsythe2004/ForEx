@@ -1,10 +1,13 @@
-﻿window.onload = function () {
+﻿//var root = "https://localhost:44381";
+var root = "https://kf-forex.azurewebsites.net";
+
+window.onload = function () {
     if ($("#listData").length) {
         var dataVue = new Vue({
             el: '#listData',
             data: {
                 items: [
-                    { name: '', countryCode: '', assets: '' }
+                    { name: '', countryCode: '', value: '', assets: '' }
                 ],
             },
             methods: {
@@ -19,7 +22,7 @@
                         type: "GET",
                         crossDomain: true,
                         dataType: 'json',
-                        url: "https://kf-forex.azurewebsites.net/home/getdata"
+                        url: root + "/home/getdata"
                     }).done(function (data) {
                         dataVue.setData(data);
                     })
@@ -40,7 +43,7 @@
             el: '#listPorts',
             data: {
                 items: [
-                    { name: '', title: '', assets: '' }
+                    { name: '', countryCode: '', value: '', assets: '' }
                 ],
             },
             methods: {
@@ -55,7 +58,7 @@
                         type: "GET",
                         crossDomain: true,
                         dataType: 'json',
-                        url: "https://kf-forex.azurewebsites.net/home/getportfolios"
+                        url: root + "/home/getportfolios"
                     }).done(function (data) {
                         portVue.setPorts(data);
                     })
@@ -92,7 +95,7 @@
                         type: "GET",
                         crossDomain: true,
                         dataType: 'json',
-                        url: "https://kf-forex.azurewebsites.net/home/getcurrency"
+                        url: root + "/home/getcurrency"
                     }).done(function (data) {
                         curVue.setCurs(data);
                     })
@@ -130,7 +133,7 @@
                         type: "GET",
                         crossDomain: true,
                         dataType: 'json',
-                        url: "https://kf-forex.azurewebsites.net/home/getcountries"
+                        url: root + "/home/getcountries"
                     }).done(function (data) {
                         cntryVue.setCntry(data);
                     })

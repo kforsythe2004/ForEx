@@ -77,6 +77,8 @@ namespace ForEx.Helpers
 
         }
 
+        
+
 
         // Simple getters to return the static json data
 
@@ -106,5 +108,15 @@ namespace ForEx.Helpers
 
             return nativeAmount;
     }
-}
+
+        public decimal ConvertToUSD(decimal value, string countryCode)
+        {
+            decimal usdAmount = 0;
+
+            // since the exchange rates are all based on USD, divide by the fxAsset currency rate to get a USD value, then multiply by the country's exchange rate to convert from USD to the native currency
+           usdAmount = value / _exchange.rates[_cntry.Single(x => x.code == countryCode).currencyCode] ;
+
+            return usdAmount;
+        }
+    }
 }

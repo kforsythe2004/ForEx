@@ -17,6 +17,21 @@ namespace ForEx.Models
 
         [DataMember]
         public fxAsset[] fxAssets;
+
+        [DataMember]
+        public decimal value;
+
+        [DataMember]
+        public decimal intrinsicValue;
+
+        [DataMember]
+        public string nativeSymbol;
+
+        [DataMember]
+        public string formattedValue
+        {
+            get { return string.Format("{0}{1:n}", nativeSymbol, Math.Round(value, 2)); }
+        }
     }
 
     [DataContract]

@@ -75,17 +75,18 @@ namespace ForEx.Controllers
 
             ports.ToList().ForEach(x =>
             {
-                string nativeSymbol = rh.GetNativeSymbol(x.countryCode);
+                x.value = 0;
+                x.nativeSymbol = rh.GetNativeSymbol(x.countryCode);
 
                 x.fxAssets.ToList().ForEach(a =>
                 {
-                    a.nativeAmount = rh.ConvertToNative(a, x.countryCode);
-                    a.symbol = rh.GetSymbol(a.currencyCode);
-                    a.nativeSymbol = nativeSymbol;
+                    x.value += rh.ConvertToNative(a, x.countryCode);
+                    
                 });
-                
+
+                x.intrinsicValue += rh.ConvertToUSD(x.value, x.countryCode);
             });
-            return ports;
+            return ports.OrderByDescending(x => x.intrinsicValue).ToArray();
         }
 
 

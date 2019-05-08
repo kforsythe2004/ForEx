@@ -26,24 +26,9 @@
             </div>
             <div class="input-group mb-3 container-fluid ">
                 <div class="input-group-addon">
-                    <span class="input-group-text" id="fxAssetsDesc">Financial Assets</span>
+                    <span class="input-group-text" id="formattedValueDesc">Total Value</span>
                 </div>
-                <table class="table input-group mb-3 container-fluid ">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Currency</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Native Value</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="asset in item.fxAssets">
-                            <th scope="row">{{asset.currencyCode}}</th>
-                            <td>{{asset.formattedAmount}}</td>
-                            <td>{{asset.formattedNativeAmount}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <input type="text" class="form-control" id="formattedValue" name="formattedValue" aria-describedby="formattedValueDesc" :value="item.formattedValue">
             </div>
         </li>
     </ul>
