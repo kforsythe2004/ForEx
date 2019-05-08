@@ -7,7 +7,7 @@ window.onload = function () {
             el: '#listData',
             data: {
                 items: [
-                    { name: '', countryCode: '', value: '', assets: '' }
+                    { name: '', countryCode: '', country: '',  formattedValue: '', formattedIntrinsicValue: '', assets: '' }
                 ],
             },
             methods: {

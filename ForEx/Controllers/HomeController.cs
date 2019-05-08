@@ -85,6 +85,7 @@ namespace ForEx.Controllers
                 });
 
                 x.intrinsicValue += rh.ConvertToUSD(x.value, x.countryCode);
+                x.country = rh.GetCountryName(x.countryCode);
             });
             return ports.OrderByDescending(x => x.intrinsicValue).ToArray();
         }

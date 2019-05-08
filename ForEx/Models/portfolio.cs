@@ -16,6 +16,9 @@ namespace ForEx.Models
         public string countryCode;
 
         [DataMember]
+        public string country;
+
+        [DataMember]
         public fxAsset[] fxAssets;
 
         [DataMember]
@@ -31,6 +34,12 @@ namespace ForEx.Models
         public string formattedValue
         {
             get { return string.Format("{0}{1:n}", nativeSymbol, Math.Round(value, 2)); }
+        }
+
+        [DataMember]
+        public string formattedIntrinsicValue
+        {
+            get { return string.Format("{0:C}",  Math.Round(intrinsicValue, 2)); }
         }
     }
 

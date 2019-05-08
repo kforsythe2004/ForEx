@@ -9,28 +9,23 @@
 <div id="listData" class="container-fluid">
 
 
-    <ul class="list-group">
-        <li v-for="item in items" class="list-group-item">
-            
-            <div class="input-group mb-3 container-fluid ">
-                    <div class="input-group-addon" >
-                        <span class="input-group-text" id="nameDesc">Name</span>
-                    </div>
-                    <input type="text" class="form-control" id="name" name="name" aria-describedby="nameDesc" :value="item.name">
-            </div>
-            <div class="input-group mb-3 container-fluid ">
-                <div class="input-group-addon">
-                    <span class="input-group-text" id="countryCodeDesc">Country Code</span>
-                </div>
-                <input type="text" class="form-control" id="countryCode" name="countryCode" aria-describedby="countryCodeDesc" :value="item.countryCode">
-            </div>
-            <div class="input-group mb-3 container-fluid ">
-                <div class="input-group-addon">
-                    <span class="input-group-text" id="formattedValueDesc">Total Value</span>
-                </div>
-                <input type="text" class="form-control" id="formattedValue" name="formattedValue" aria-describedby="formattedValueDesc" :value="item.formattedValue">
-            </div>
-        </li>
-    </ul>
+    <table class="table input-group mb-3 container-fluid ">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Country</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="item in items">
+                <th scope="row">{{item.name}}</th>
+                <td>{{item.country}}</td>
+                <td>{{item.formattedValue}}</td>
+                <td>{{item.formattedIntrinsicValue}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 

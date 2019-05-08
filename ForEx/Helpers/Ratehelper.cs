@@ -77,7 +77,9 @@ namespace ForEx.Helpers
 
         }
 
-        
+     
+
+
 
 
         // Simple getters to return the static json data
@@ -97,6 +99,10 @@ namespace ForEx.Helpers
             return _cntry;
         }
 
+        internal string GetCountryName(string countryCode)
+        {
+            return _cntry.Single(x => x.code == countryCode).name;
+        }
 
         // helper method to convert financial asset amount from its currency to the default of the country identified on the portfolio
         public decimal ConvertToNative(fxAsset a, string countryCode)
