@@ -19,11 +19,29 @@
             </div>
             <div class="input-group mb-3 container-fluid ">
                 <div class="input-group-addon">
-                    <span class="input-group-text" id="countryCodeDesc">Title</span>
+                    <span class="input-group-text" id="countryCodeDesc">Country Code</span>
                 </div>
                 <input type="text" class="form-control" id="countryCode" name="countryCode" aria-describedby="countryCodeDesc" :value="item.countryCode">
             </div>
-         
+            <div class="input-group mb-3 container-fluid ">
+                <div class="input-group-addon">
+                    <span class="input-group-text" id="fxAssetsDesc">Financial Assets</span>
+                </div>
+                <table class="table input-group mb-3 container-fluid ">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Currency</th>
+                            <th scope="col">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="asset in item.fxAssets">
+                            <th scope="row">{{asset.currencyCode}}</th>
+                            <td>{{asset.formattedAmount}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </li>
     </ul>
 </div>

@@ -4,7 +4,7 @@
             el: '#listData',
             data: {
                 items: [
-                    { name: 'key', title: 'title', assets: 'fx' }
+                    { name: '', countryCode: '', assets: '' }
                 ],
             },
             methods: {
@@ -19,12 +19,12 @@
                         type: "GET",
                         crossDomain: true,
                         dataType: 'json',
-                        url: "https://localhost:44381/home/getdata"
+                        url: "https://kf-forex.azurewebsites.net/home/getdata"
                     }).done(function (data) {
-                        dataVue.seData(data);
+                        dataVue.setData(data);
                     })
-                        .fail(function (error) {
-                            alert(error);
+                        .fail(function () {
+                            alert("error in javascript");
                         });
                 }
             }
@@ -40,7 +40,7 @@
             el: '#listPorts',
             data: {
                 items: [
-                    { name: 'key', title: 'title', assets: 'fx' }
+                    { name: '', title: '', assets: '' }
                 ],
             },
             methods: {
@@ -55,12 +55,12 @@
                         type: "GET",
                         crossDomain: true,
                         dataType: 'json',
-                        url: "https://localhost:44381/home/getportfolios"
+                        url: "https://kf-forex.azurewebsites.net/home/getportfolios"
                     }).done(function (data) {
                         portVue.setPorts(data);
                     })
-                        .fail(function (error) {
-                            alert(error);
+                        .fail(function () {
+                            alert("error in javascript");
                         });
                 }
             }
@@ -77,7 +77,7 @@
             el: '#listCurs',
             data: {
                 items: [
-                    { isoCode: 'isoCode', name: 'name', symbol: 'symbol' }
+                    { isoCode: '', name: '', symbol: '' }
                 ],
             },
             methods: {
@@ -92,13 +92,13 @@
                         type: "GET",
                         crossDomain: true,
                         dataType: 'json',
-                        url: "https://localhost:44381/home/getcurrency"
+                        url: "https://kf-forex.azurewebsites.net/home/getcurrency"
                     }).done(function (data) {
                         curVue.setCurs(data);
                     })
 
-                    fail(function (error) {
-                            alert(error);
+                    fail(function () {
+                        alert("error in javascript");
                         });
                 }
             }
@@ -115,7 +115,7 @@
             el: '#listCntry',
             data: {
                 items: [
-                    { code: 'Code', name: 'name', currencyCode: 'cur' }
+                    { code: '', name: '', currencyCode: '' }
                 ],
             },
             methods: {
@@ -130,13 +130,13 @@
                         type: "GET",
                         crossDomain: true,
                         dataType: 'json',
-                        url: "https://localhost:44381/home/getcountries"
+                        url: "https://kf-forex.azurewebsites.net/home/getcountries"
                     }).done(function (data) {
                         cntryVue.setCntry(data);
                     })
 
-                    fail(function (error) {
-                        alert(error);
+                    fail(function () {
+                        alert("error in javascript");
                     });
                 }
             }

@@ -13,6 +13,11 @@ namespace ForEx.Controllers
 {
     public class HomeController : Controller
     {
+        // // // // // // // // // // // // // // // // // // // // // // // //
+        //
+        // This section handles basic page loading
+        //
+        // // // // // // // // // // // // // // // // // // // // // // // //
 
         public IActionResult Index()
         {
@@ -34,6 +39,13 @@ namespace ForEx.Controllers
             return View();
         }
 
+
+        // // // // // // // // // // // // // // // // // // // // // // // //
+        //
+        // This section handles ajax data requests
+        //
+        // // // // // // // // // // // // // // // // // // // // // // // //
+
         public IActionResult Country()
         {
             return View();
@@ -50,24 +62,30 @@ namespace ForEx.Controllers
         [HttpGet]
         public portfolio[] getdata()
         {
-            string path = string.Format("{0}{1}", Environment.CurrentDirectory, "\\JsonData\\portfolio.json");
-            string jsonData = System.IO.File.ReadAllText(path);
-            portfolioRoot ports = JsonConvert.DeserializeObject<portfolioRoot>(jsonData);
-
             RateHelper rh = new RateHelper();
 
+            // Get portfolio data and current exchange rates
+            portfolio[] ports = rh.GetPortfolios();
             Exchange ex = rh.GetRates();
 
-            ports.portfolios.ToList().ForEach(x =>
+
+            // cycle through each portfolio and then each asset
+            // Calculate the value in the native currency for that country
+            // populate currency symbols
+
+            ports.ToList().ForEach(x =>
             {
+                string nativeSymbol = rh.GetNativeSymbol(x.countryCode);
+
                 x.fxAssets.ToList().ForEach(a =>
                 {
                     a.nativeAmount = rh.ConvertToNative(a, x.countryCode);
-
+                    a.symbol = rh.GetSymbol(a.currencyCode);
+                    a.nativeSymbol = nativeSymbol;
                 });
                 
             });
-            return ports.portfolios;
+            return ports;
         }
 
 
@@ -76,11 +94,9 @@ namespace ForEx.Controllers
         [HttpGet]
         public portfolio[] getportfolios()
         {
-            string path = string.Format("{0}{1}", Environment.CurrentDirectory, "\\JsonData\\portfolio.json");
-            string jsonData = System.IO.File.ReadAllText(path);
-            portfolioRoot ports = JsonConvert.DeserializeObject<portfolioRoot>(jsonData);
+            RateHelper rh = new RateHelper();
 
-            return ports.portfolios;
+            return rh.GetPortfolios();
         }
 
 
@@ -88,22 +104,18 @@ namespace ForEx.Controllers
         [HttpGet]
         public Currency[] getcurrency()
         {
-            string path = string.Format("{0}{1}", Environment.CurrentDirectory, "\\JsonData\\currencyCode.json");
-            string jsonData = System.IO.File.ReadAllText(path);
-            Currency[] curs = JsonConvert.DeserializeObject<Currency[]>(jsonData);
+            RateHelper rh = new RateHelper();
 
-            return curs;
+            return rh.GetCurrency();
         }
 
         // POST <controller>/getcountries
         [HttpGet]
         public Country[] getcountries()
         {
-            string path = string.Format("{0}{1}", Environment.CurrentDirectory, "\\JsonData\\country.json");
-            string jsonData = System.IO.File.ReadAllText(path);
-            Country[] cntry = JsonConvert.DeserializeObject<Country[]>(jsonData);
+            RateHelper rh = new RateHelper();
 
-            return cntry;
+            return rh.GetCountry();
         }
     }
 }
