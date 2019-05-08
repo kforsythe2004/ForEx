@@ -1,8 +1,10 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Portfolio";
 }
+<h2>@ViewData["Title"]</h2>
 
-<div id="listData" class="container-fluid">
+<p>Portfolio Data</p>
+<div id="listPorts" class="container-fluid">
 
     <br />
     <br />
@@ -21,7 +23,7 @@
                 </div>
                 <input type="text" class="form-control" id="countryCode" name="countryCode" aria-describedby="countryCodeDesc" :value="item.countryCode">
             </div>
-
+         
         </li>
     </ul>
 </div>

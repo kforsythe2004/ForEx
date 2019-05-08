@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Country Data";
+}
+<h2>@ViewData["Title"]</h2>
+
+<p>Country Data</p>
+<div id="listCntry" class="container-fluid">
+
+    <br />
+    <br />
+
+    <ul class="list-group">
+        <li v-for="item in items" class="list-group-item">
+            <div class="input-group mb-3 container-fluid ">
+                <div class="input-group-addon">
+                    <span class="input-group-text" id="symbolDesc">Code</span>
+                </div>
+                <input type="text" class="form-control" id="code" name="code" aria-describedby="codeDesc" :value="item.code">
+            </div>
+            <div class="input-group mb-3 container-fluid ">
+                <div class="input-group-addon">
+                    <span class="input-group-text" id="nameDesc">Name</span>
+                </div>
+                <input type="text" class="form-control" id="name" name="name" aria-describedby="nameDesc" :value="item.name">
+            </div>
+            <div class="input-group mb-3 container-fluid ">
+                <div class="input-group-addon">
+                    <span class="input-group-text" id="currencyCodeDesc">Currency Code</span>
+                </div>
+                <input type="text" class="form-control" id="currencyCode" name="currencyCode" aria-describedby="currencyCodeDesc" :value="item.currencyCode">
+            </div>
+
+        </li>
+    </ul>
+</div>
